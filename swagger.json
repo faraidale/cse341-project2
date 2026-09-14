@@ -5,7 +5,7 @@
     "description": "Elpo Interview Coaching Experts API - Candidates and Questions",
     "version": "1.0.0"
   },
-  "host": "localhost:8080",
+  "host": "eice-api.onrender.com",
   "basePath": "/",
   "schemes": [
     "http",

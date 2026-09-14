@@ -5,7 +5,7 @@ const doc = {
     title: 'EICE API',
     description: 'Elpo Interview Coaching Experts API - Candidates and Questions'
   },
-  host: 'localhost:8080',
+  host: 'eice-api.onrender.com',
   schemes: ['http', 'https']
 };
 
