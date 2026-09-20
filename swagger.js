@@ -6,7 +6,7 @@ const doc = {
     description: 'Elpo Interview Coaching Experts API - Candidates and Questions'
   },
   host: 'eice-api.onrender.com',
-  schemes: ['http', 'https']
+  schemes: ['https']
 };
 
 const outputFile = './swagger.json';

@@ -8,7 +8,6 @@
   "host": "eice-api.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http",
     "https"
   ],
   "paths": {
