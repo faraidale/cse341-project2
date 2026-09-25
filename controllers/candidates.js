@@ -47,7 +47,7 @@ const createCandidate = async (req, res) => {
     };
 
     const response = await mongodb.getDb().db().collection('candidates').insertOne(candidate);
-    
+
     if (response.acknowledged) {
       res.status(201).json(response);
     } else {
@@ -62,7 +62,7 @@ const createCandidate = async (req, res) => {
 const updateCandidate = async (req, res) => {
   try {
     const userId = new ObjectId(req.params.id);
-    
+
     // Data Validation for PUT
     if (!req.body.firstName || !req.body.lastName || !req.body.email || !req.body.targetRole) {
       return res.status(400).send({ message: 'Validation Failed: firstName, lastName, email, and targetRole are required fields.' });
@@ -79,7 +79,7 @@ const updateCandidate = async (req, res) => {
     };
 
     const response = await mongodb.getDb().db().collection('candidates').replaceOne({ _id: userId }, candidate);
-    
+
     if (response.modifiedCount > 0) {
       res.status(204).send(); // 204 means success, no content to send back
     } else {
@@ -95,7 +95,7 @@ const deleteCandidate = async (req, res) => {
   try {
     const userId = new ObjectId(req.params.id);
     const response = await mongodb.getDb().db().collection('candidates').deleteOne({ _id: userId });
-    
+
     if (response.deletedCount > 0) {
       res.status(204).send();
     } else {

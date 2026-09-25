@@ -10,7 +10,69 @@
   "schemes": [
     "https"
   ],
+  "securityDefinitions": {
+    "sessionCookie": {
+      "type": "apiKey",
+      "name": "Cookie",
+      "in": "header",
+      "description": "Authenticate at /login first. Send the resulting connect.sid session cookie."
+    }
+  },
   "paths": {
+    "/login": {
+      "get": {
+        "description": "Starts GitHub OAuth login. The callback creates a users collection record and a session.",
+        "responses": {
+          "302": {
+            "description": "Redirects to GitHub for authentication"
+          },
+          "503": {
+            "description": "OAuth is not configured"
+          }
+        }
+      }
+    },
+    "/github/callback": {
+      "get": {
+        "description": "GitHub OAuth callback. On success, redirects to Swagger UI with an authenticated session.",
+        "responses": {
+          "302": {
+            "description": "Redirects to Swagger UI"
+          },
+          "401": {
+            "description": "Authentication failed"
+          }
+        }
+      }
+    },
+    "/auth/status": {
+      "get": {
+        "description": "Returns the current authentication status.",
+        "responses": {
+          "200": {
+            "description": "Authentication status"
+          }
+        }
+      }
+    },
+    "/auth/logout": {
+      "get": {
+        "description": "Logs out the current user and destroys the session.",
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Logged out successfully"
+          },
+          "500": {
+            "description": "Logout failed"
+          }
+        }
+      }
+    },
     "/candidates/": {
       "get": {
         "description": "",
@@ -28,6 +90,11 @@
       },
       "post": {
         "description": "",
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
         "parameters": [
           {
             "name": "body",
@@ -98,6 +165,11 @@
       },
       "put": {
         "description": "",
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
         "parameters": [
           {
             "name": "id",
@@ -150,6 +222,11 @@
       },
       "delete": {
         "description": "",
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
         "parameters": [
           {
             "name": "id",
@@ -185,6 +262,11 @@
       },
       "post": {
         "description": "",
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
         "parameters": [
           {
             "name": "body",
@@ -243,6 +325,11 @@
       },
       "put": {
         "description": "",
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
         "parameters": [
           {
             "name": "id",
@@ -283,6 +370,11 @@
       },
       "delete": {
         "description": "",
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
         "parameters": [
           {
             "name": "id",
